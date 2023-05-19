@@ -10,39 +10,46 @@ using namespace std;
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL)
 const long long mod = 1e9 + 7;
 
-vector<vector<int>> g;
+vector<set<int>> g;
 vector<bool> vis;
 int mn,mx;
 
-void dfs(int curr,int parr){
+void dfs(int curr){
     vis[curr] = true;
-    for(auto it:g[curr])if(it!=parr){
+    for(auto it:g[curr]){
         if(!vis[it])
-            dfs(it,curr);
-        else mn++;
+            dfs(it);
     }
 }
 
 void solve(){
     int n;  cin >> n;
+    g.clear();
     g.resize(n+1);
     vis.assign(n+1,false);
 
     for(int i = 1;i<=n;i++){
         int val;    cin >> val;
-        g[i].pb(val);
-        g[val].pb(i);
+        g[i].insert(val);
+        g[val].insert(i);
     }
 
     mn = 0;
     mx = 0;
 
     for(int i = 1;i<=n;i++){
+        if(g[i].size() == 1)mn++;
         if(!vis[i]){
             mx++;
-            dfs(i,-1);
+            dfs(i);
         }
     }
+    mn/=2;
+
+    int cycle = mx-mn;
+
+    if(cycle == mx)mn = cycle;
+    else mn = cycle+1;
 
     cout << mn << " " << mx << endl;
 
