@@ -11,15 +11,10 @@ using namespace std;
 const long long mod = 1e9 + 7;
 
 
-ll modexp(ll a, ll b = mod-2){
+ll modexp(ll a, ll b){
   if(b == 0)return 1;
-  if(b%2==0){
-    return(modexp((a%mod * a%mod)%mod,b/2))%mod;
-  }
-  else
-    return (a%mod * modexp(a,b-1))%mod;
+  return (b%2 == 0) ? (modexp((a * a)%mod,b/2))%mod : (a * modexp(a,b-1))%mod;
 }
-
 
 void solve(){
     int n,k;  cin >> n >> k;
@@ -46,27 +41,6 @@ void solve(){
 
     ll ans = 0;
 
-    // int l = mn,r=mn;
-    // for(int i = mn;i<=mx;i++){
-    //     if(m.find(i) == m.end()){
-    //         cnt = 0;
-    //         mul = 1;
-    //     }
-    //     else{
-    //         cnt++;
-    //         mul = (mul*m[i])%mod;
-    //     }
-
-    //     if(cnt == k){
-    //         ans = (ans+mul)%mod;
-    //     }
-    //     if(cnt>k){
-    //         mul = (mul* modexp(m[i-k]))%mod;
-    //         cnt--;
-
-    //         ans = (ans+mul)%mod;
-    //     }
-    // }
 
     for(int i = 0;i<n;i++){
         if(i == 0){
@@ -90,7 +64,7 @@ void solve(){
             ans = (ans+mul)%mod;
         }
         if(cnt>k){
-            mul = (mul * modexp(m[a[i]-k]))%mod;
+            mul = (mul * modexp(m[a[i]-k],mod-2))%mod;
             cnt--;
             ans = (ans+mul)%mod;
         }
