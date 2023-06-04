@@ -14,23 +14,20 @@ using namespace std;
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL)
 const long long mod = 1e9 + 7;
 
-void change(vector<int> a){
-    a[0] = 100;
-}
-
 void solve(){
-    vector<int> a = {1,2,3,4,5,6,7,8,9,10};
+    int n;  cin >> n;
+    vector<int> a(n);   _input(a);
 
-
-    change(a);
-
+    for(auto &it:a){
+        it = n+1-it;
+    }
     _print(a);
 
 }
 
 int32_t main(){
     fastio;
-    int t=1;  //cin >> t;
+    int t=1;  cin >> t;
     while(t--)solve();
 
     return 0;

@@ -47,9 +47,10 @@ void build(int idx,int left,int right){
 
     int val = power(2,depth);
 
-    if(mx <= val and mx!=-1 and mn!=-1){
+    if(mx!=-1 and mn!=-1){
         //dbug(idx);
-        impossible = true;
+        if(mn>val or mx<=val)
+            impossible = true;
     }
 
     if(mn == -1)mn = mx;
