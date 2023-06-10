@@ -14,16 +14,19 @@ using namespace std;
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL)
 const long long mod = 1e9 + 7;
 
-void solve(){
-    string s = "abcde";
 
-    cout << string(s.begin()+1,s.end()) << endl;
+void solve(){
+    int n,k;    cin >> n >> k;
+
+    k = min(k,60LL);
+
+    cout << min(n+1,(1LL<<k)) << endl;
 
 }
 
 int32_t main(){
     fastio;
-    int t=1;  //cin >> t;
+    int t=1;  cin >> t;
     while(t--)solve();
 
     return 0;

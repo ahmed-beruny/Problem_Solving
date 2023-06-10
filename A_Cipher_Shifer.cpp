@@ -15,15 +15,31 @@ using namespace std;
 const long long mod = 1e9 + 7;
 
 void solve(){
-    string s = "abcde";
+    int n;  cin >> n;
+    string s;   cin >> s;
 
-    cout << string(s.begin()+1,s.end()) << endl;
+    string ans = "";
+
+    char curr = s[0];
+
+    for(int i = 1;i<s.size();i++){
+        if(curr == '#'){
+            curr = s[i];
+            continue;
+        }
+        if(s[i] == curr){
+            ans += curr;
+            curr = '#';
+        }
+    }
+
+    cout << ans << endl;
 
 }
 
 int32_t main(){
     fastio;
-    int t=1;  //cin >> t;
+    int t=1;  cin >> t;
     while(t--)solve();
 
     return 0;

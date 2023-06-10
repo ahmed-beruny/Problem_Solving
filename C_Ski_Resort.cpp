@@ -15,15 +15,36 @@ using namespace std;
 const long long mod = 1e9 + 7;
 
 void solve(){
-    string s = "abcde";
+    int n,k,q;  cin >> n >> k >> q;
+    k--;
+    vector<int> a(n);   _input(a);
 
-    cout << string(s.begin()+1,s.end()) << endl;
+    int l=0,r=0;
+    int ans = 0;
+    while(r<n){
+        if(a[r] <= q)r++;
+        else{
+            int val = (r-l) - k;
+            if(val>0){
+                ans += (val*(val+1))/2;
+            }
+            r++;
+            l = r;
+        }
+    }
+    int val = (r-l) - k;
+    if(val>0){
+        ans += (val*(val+1))/2;
+    }
+
+    cout << ans << endl;
+
 
 }
 
 int32_t main(){
     fastio;
-    int t=1;  //cin >> t;
+    int t=1;  cin >> t;
     while(t--)solve();
 
     return 0;

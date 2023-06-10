@@ -15,15 +15,25 @@ using namespace std;
 const long long mod = 1e9 + 7;
 
 void solve(){
-    string s = "abcde";
+    int n;  cin >> n;
+    vector<int> a(n);   _input(a);
 
-    cout << string(s.begin()+1,s.end()) << endl;
+    int m;  cin >> m;
+    int sum = 0;
+    while(m--){
+        int val;    cin >> val;
+        sum += val;
+    }
+
+    int x = sum%n;
+
+    cout << a[x] << endl;
 
 }
 
 int32_t main(){
     fastio;
-    int t=1;  //cin >> t;
+    int t=1;  cin >> t;
     while(t--)solve();
 
     return 0;

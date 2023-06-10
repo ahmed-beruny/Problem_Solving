@@ -14,10 +14,48 @@ using namespace std;
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL)
 const long long mod = 1e9 + 7;
 
-void solve(){
-    string s = "abcde";
+int len(int x){
+    int cnt = 0;
+    while(x){
+        cnt++;
+        x/=10;
+    }
+    return cnt;
+}
 
-    cout << string(s.begin()+1,s.end()) << endl;
+unordered_map<int,int> dp;
+
+int recurr(int n,int x){
+    if(len(x)>=n)return 0;
+
+    if(dp.find(x) != dp.end())return dp[x];
+
+    int val = x;
+
+    int ans = INT_MAX;
+    while(val){
+        int rem = val%10;
+        val/=10;
+        if(rem>1){
+            ans = min(ans,recurr(n,x*rem)+1);
+        }
+    }
+
+    return dp[x] = ans;
+
+}
+
+void solve(){
+    int n,x;    cin >> n >> x;
+
+
+
+    int ans = recurr(n,x);
+
+    if(ans>=INT_MAX){
+        cout << -1 << endl;
+    }
+    else cout << ans << endl;
 
 }
 

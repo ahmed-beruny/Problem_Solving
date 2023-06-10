@@ -14,16 +14,49 @@ using namespace std;
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL)
 const long long mod = 1e9 + 7;
 
-void solve(){
-    string s = "abcde";
+bool possible(vector<int> &a,int diff){
+    int cnt = 0;
 
-    cout << string(s.begin()+1,s.end()) << endl;
+    int l = 0,r = 0;
+
+    while(r<a.size()){
+        if(a[r]-a[l] > 2*diff){
+            cnt++;
+            l = r;
+        }
+        r++;
+        if(cnt == 3)return false;
+    }
+    return true;
+}
+
+void solve(){
+    int n;  cin >> n;
+    vector<int> a(n);   _input(a);
+    sort(a.begin(),a.end());
+
+    int l = -1,r = 1e9;
+
+    while(l<r){
+        int mid = (l+r)/2;
+
+        if(possible(a,mid)){
+            r = mid;
+        }
+        else l = mid;
+        
+        if(r-l == 1){
+            cout << r << endl;
+            return;
+        }
+    }
+
 
 }
 
 int32_t main(){
     fastio;
-    int t=1;  //cin >> t;
+    int t=1;  cin >> t;
     while(t--)solve();
 
     return 0;

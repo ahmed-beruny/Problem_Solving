@@ -15,15 +15,35 @@ using namespace std;
 const long long mod = 1e9 + 7;
 
 void solve(){
-    string s = "abcde";
+    int n,m;
+    cin >> n; 
+    vector<int> a(n);   _input(a);
+    cin >> m;
+    vector<int> b(m);   _input(b);
 
-    cout << string(s.begin()+1,s.end()) << endl;
+    int am = 0,bm = 0;
+    for(auto it:a)am = max(am,it);
+    for(auto it:b)bm = max(bm,it);
+
+    if(am == bm){
+        cout << "Alice" << endl;
+        cout << "Bob" << endl;
+        return;
+    }
+    if(am>bm){
+        cout << "Alice" << endl;
+        cout << "Alice" << endl;
+    }
+    else{
+        cout << "Bob" << endl;
+        cout << "Bob" << endl;
+    }
 
 }
 
 int32_t main(){
     fastio;
-    int t=1;  //cin >> t;
+    int t=1;  cin >> t;
     while(t--)solve();
 
     return 0;
